@@ -13,6 +13,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  errorMessage: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -25,6 +26,10 @@ export class LoginComponent {
     });
   }
 
+  goToRegister(): void {
+    this.router.navigate(['/register']);
+  }
+
   onSubmit() {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
@@ -35,11 +40,18 @@ export class LoginComponent {
 
           this.authService.saveToken(token);
 
+          this.errorMessage = null;
           this.router.navigate(['/posts']);
         },
         error: (err) => {
           console.error('Error al iniciar sesión:', err);
-          alert('Credenciales incorrectas o error en el servidor.');
+
+          
+          if (err.status === 401) {
+            this.errorMessage = 'Credenciales incorrectas. Verifica tu correo y contraseña.';
+          } else {
+            this.errorMessage = 'Error en el servidor. Intenta nuevamente más tarde.';
+          }
         },
       });
     } else {
