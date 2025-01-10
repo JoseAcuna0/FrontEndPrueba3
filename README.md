@@ -21,7 +21,7 @@ Este proyecto corresponde al Frontend de la prueba 3 de IDWM
 
 2. Clona el repositorio desde la Terminal de Visual Studio Code (CTRL + J) con el siguiente comando:
    ```bash
-   git clone https://github.com/Intro-Desarrollo-Web-Movil/TallerIDWM-Frontend
+   git clone https://github.com/JoseAcuna0/FrontEndPrueba3.git
    ```
 
 ---
